@@ -1,0 +1,117 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f9f9f9;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background: #0077cc;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+nav {
+  margin-top: 1rem;
+}
+
+.tab-btn {
+  background: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin: 0 5px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.tab-btn.active {
+  background: #005fa3;
+  color: white;
+}
+
+main {
+  flex: 1;
+  padding: 1rem;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.add-task {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+#taskInput {
+  flex: 1;
+  padding: 0.5rem;
+}
+
+#addTaskBtn {
+  padding: 0.5rem 1rem;
+  background: #0077cc;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* Task list */
+ul {
+  list-style: none;
+}
+
+li {
+  padding: 0.5rem;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+li.completed {
+  text-decoration: line-through;
+  color: gray;
+}
+
+/* Star icon */
+.star {
+  cursor: pointer;
+  font-size: 18px;
+  color: #aaa;
+  transition: color 0.3s ease;
+}
+
+.star:hover {
+  color: gold;
+}
+
+.star.active {
+  color: gold;
+}
+
+/* Dark mode */
+body.dark {
+  background: #222;
+  color: #eee;
+}
+
+body.dark header {
+  background: #444;
+}
