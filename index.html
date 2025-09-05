@@ -1,47 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>To-Do List</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Task Mate — To‑Do List</title>
+  <meta name="description" content="Perfect To‑Do list with favourite, filter, and export-import features." />
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>✅</text></svg>">
 </head>
 <body>
-  <header>
-    <h1>The Task I Need to Do</h1>
-    <p>You Can Add Any Tasks to The List</p>
-    <nav>
-      <button class="tab-btn active" data-tab="tasks">My Tasks</button>
-      <button class="tab-btn" data-tab="favourites">Favourites</button>
-      <button class="tab-btn" data-tab="settings">Settings</button>
-    </nav>
-  </header>
-
-  <main>
-    <!-- Tasks -->
-    <section id="tasks" class="tab-content active">
-      <div class="add-task">
-        <input type="text" id="taskInput" placeholder="Add new task..."/>
-        <button id="addTaskBtn">Add</button>
+  <main class="app" aria-live="polite">
+    <header>
+      <div class="brand" aria-label="Task Mate">
+        <div class="logo" aria-hidden="true">🗒️</div>
+        <div>
+          <b>Task Mate</b>
+          <div style="font-size:12px;color:var(--muted)">Your Perfect To‑Do list App</div>
+        </div>
       </div>
-      <ul id="taskList"></ul>
+      <nav aria-label="Navigasi tab">
+        <button class="tab-btn active" data-tab="tasks">My Tasks</button>
+        <button class="tab-btn" data-tab="favs">Favourites</button>
+        <button class="tab-btn" data-tab="settings">Settings</button>
+      </nav>
+    </header>
+
+    <section class="content" id="tab-tasks" role="tabpanel">
+      <div class="controls">
+        <div class="field" style="flex:2">
+          <span class="icon">🔎</span>
+          <input id="search" type="search" placeholder="Find Tasks… (Ctrl+/)" />
+        </div>
+        <div class="field">
+          <span class="icon">✍️</span>
+          <input id="newTask" type="text" placeholder="Type The Task then Add or Enter…" />
+        </div>
+        <button id="addBtn" class="btn primary" title="Click to Add">Add</button>
+        <button id="clearDone" class="btn ghost" title="Delete The Done">Clear Done Tasks</button>
+      </div>
+
+      <div class="filters" role="tablist" aria-label="Filter">
+        <button class="chip active" data-filter="all">All</button>
+        <button class="chip" data-filter="active">Active</button>
+        <button class="chip" data-filter="done">Done</button>
+        <button class="chip" data-filter="fav">Favourite</button>
+      </div>
+
+      <div class="list" id="list" aria-label="Daftar tugas"></div>
+      <div class="drag-hint">💡 Drag to change order | Click <strong>★</strong> to favourite | Click title to edit | <a href="../about/index.html">About This Page</a> | Author: <a href="https://furqonarif.github.io/">Furqon Arif</a></div>
     </section>
 
-    <!-- Favourites -->
-    <section id="favourites" class="tab-content">
-      <h2>Favourite Tasks</h2>
-      <ul id="favouriteList"></ul>
+    <section class="content" id="tab-favs" role="tabpanel" hidden>
+      <div class="list" id="favList"></div>
+      <div class="empty" id="favEmpty" hidden></div>
     </section>
 
-    <!-- Settings -->
-    <section id="settings" class="tab-content">
-      <h2>Settings</h2>
-      <button id="toggleThemeBtn">Toggle Dark/Light Mode</button>
-      <button id="exportBtn">Export Tasks</button>
-      <input type="file" id="importFile" />
+    <section class="content" id="tab-settings" role="tabpanel" hidden>
+      <div class="settings">
+        <div class="row">
+          <div>
+            <div><b>Theme</b></div>
+            <small>Choose between light or dark.</small>
+          </div>
+          <label>
+            <input type="checkbox" id="themeToggle" /> <span>Light Mode</span>
+          </label>
+        </div>
+
+        <div class="row">
+          <div>
+            <div><b>Export / Import</b></div>
+            <small>Save file to JSON or reload your JSON file.</small>
+          </div>
+          <div style="display:flex; gap:8px">
+            <button class="btn ghost" id="exportBtn">Export JSON</button>
+            <label class="btn ghost" for="importFile" style="cursor:pointer">Import JSON</label>
+            <input id="importFile" type="file" accept="application/json" hidden />
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <div><b>Reset</b></div>
+            <small>Delete every single tasks in the list.</small>
+          </div>
+          <button class="btn danger" id="resetBtn">Clear All</button>
+        </div>
+      </div>
     </section>
   </main>
 
-  <script src="script.js"></script>
+  <template id="itemTemplate">
+    <div class="item" draggable="true">
+      <input class="checkbox" type="checkbox" aria-label="Tandai selesai" />
+      <div class="body">
+        <div class="title" contenteditable="true" spellcheck="false"></div>
+        <div class="meta"></div>
+      </div>
+      <div class="actions">
+        <button class="icon-btn fav-btn" title="Click to Favourite" aria-label="Favorit">★</button>
+        <button class="icon-btn del-btn" title="Delete" aria-label="Delete">🗑️</button>
+      </div>
+    </div>
+  </template>
+  <script type="text/javascript" src="script.js"></script>
 </body>
 </html>
