@@ -99,7 +99,7 @@ li.completed {
 }
 
 .star:hover {
-  color: rgb(255, 153, 0);
+  color: rgb(243, 130, 0);
 }
 
 .star.active {
