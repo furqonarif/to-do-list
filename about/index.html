@@ -1,16 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About This Project</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Task Mate</title>
+  <meta name="description" content="About Task Mate - a simple and modern To-Do list app." />
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>✅</text></svg>">
 </head>
 <body>
-  <h1>About TaskMate</h1>
-  <p>This is a simple To-Do List web app built with vanilla HTML, CSS, and JavaScript. 
-     It demonstrates tab navigation, favourites, dark/light theme, 
-     export & import, and local storage.</p>
+  <main class="app">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true">🗒️</div>
+        <div>
+          <b>About Task Mate</b>
+          <div class="subtitle">Your Perfect To-Do list App</div>
+        </div>
+      </div>
+      <nav>
+        <a href="https://furqonarif.github.io/">
+          <button class="tab-btn active">Created by: Furqon Arif</button>
+        </a>
+      </nav>
+    </header>
 
-  <p><a href="../index.html">Back to To-Do App</a></p>
+    <section class="content">
+      <p>
+        Task Mate is a simple To-Do List web app built with pure HTML, CSS, and JavaScript. 
+        It demonstrates tab navigation, favourites, dark/light theme switching, 
+        export & import, and local storage for your tasks.
+      </p>
+      <div class="back-btn-wrap">
+        <a href="../todo/index.html" class="back-btn">⬅ Back to Task Mate Main Page</a>
+      </div>
+    </section>
+  </main>
 </body>
 </html>
