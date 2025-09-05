@@ -1,117 +1,160 @@
-/* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+:root {
+  --bg:  #0b1020;
+  --bg-soft:#121735;
+  --card:#0f1530;
+  --text:#e8ecff;
+  --muted:#9aa3c7;
+  --primary:#7c9eff;
+  --accent:#80ffd3;
+  --danger:#ff6b6b;
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --radius: 16px;
+  --ring: 0 0 0 3px rgba(124,158,255,.35);
 }
 
-body {
-  font-family: Arial, sans-serif;
-  background: #f9f9f9;
-  color: #333;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+:root.light {
+  --bg:#f7f8ff;
+  --bg-soft:#eef1ff;
+  --card:#ffffff;
+  --text:#131629;
+  --muted:#525b7a;
+  --primary:#3d63ff;
+  --accent:#12b886;
+  --danger:#e03131;
+  --shadow: 0 10px 25px rgba(17,24,39,.12);
+  --ring: 0 0 0 3px rgba(61,99,255,.25);
 }
 
-header {
-  background: #0077cc;
-  color: white;
-  padding: 1rem;
-  text-align: center;
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial;
+  background: radial-gradient(1100px 600px at 10% -10%, rgba(124,158,255,.15), transparent 60%),
+              radial-gradient(900px 400px at 110% 10%, rgba(18,184,134,.12), transparent 60%),
+              var(--bg);
+  color:var(--text);
+  display:flex; align-items:center; justify-content:center;
+  padding:clamp(12px, 2vw, 24px);
 }
 
-nav {
-  margin-top: 1rem;
+.app{
+  width:min(980px, 100%);
+  background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0)) , var(--card);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  overflow:hidden;
 }
 
-.tab-btn {
-  background: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  margin: 0 5px;
-  border-radius: 4px;
-  cursor: pointer;
+header{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:20px clamp(16px, 3vw, 28px);
+  background:linear-gradient(0deg, transparent, rgba(255,255,255,.04));
+  border-bottom:1px solid rgba(255,255,255,.06);
 }
 
-.tab-btn.active {
-  background: #005fa3;
-  color: white;
+.brand{display:flex; gap:12px; align-items:center}
+.brand .logo{width:38px; height:38px; display:grid; place-items:center; border-radius:12px; background:linear-gradient(135deg, var(--primary), var(--accent)); box-shadow:0 6px 18px rgba(124,158,255,.35)}
+.brand b{font-size:20px; letter-spacing:.3px}
+nav{display:flex; gap:6px; background:var(--bg-soft); padding:6px; border-radius:999px}
+.tab-btn{
+  border:0; background:transparent; color:var(--muted); padding:10px 14px; border-radius:999px; cursor:pointer; font-weight:600; letter-spacing:.2px
 }
 
-main {
-  flex: 1;
-  padding: 1rem;
+.tab-btn.active{color:var(--text); background: var(--card); box-shadow: var(--shadow)}
+.content{padding:24px clamp(16px, 3vw, 28px) 28px}
+
+/* Controls */
+.controls{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-bottom:18px}
+.field{position:relative; flex:1 1 260px}
+.field input{
+  width:100%; background:var(--bg-soft); color:var(--text); border:1px solid rgba(255,255,255,.08);
+  padding:14px 14px 14px 44px; border-radius:12px; outline:none;
 }
 
-.tab-content {
-  display: none;
+.field input:focus{box-shadow:var(--ring); border-color:transparent}
+.field .icon{position:absolute; left:12px; top:50%; transform:translateY(-50%); opacity:.7}
+.btn{display:inline-flex; align-items:center; gap:10px; border:0; padding:12px 14px; border-radius:12px; cursor:pointer; font-weight:700}
+.btn.primary{background:var(--primary); color:white}
+.btn.ghost{background:var(--bg-soft); color:var(--text)}
+.btn.danger{background:var(--danger); color:white}
+
+.filters{display:flex; gap:8px; flex-wrap:wrap; margin:6px 0 18px}
+.chip{padding:8px 12px; border-radius:999px; background:var(--bg-soft); color:var(--muted); border:1px solid rgba(255,255,255,.06); cursor:pointer}
+.chip.active{background:var(--primary); color:white}
+
+/* List */
+.list{display:grid; gap:10px}
+.item{
+  display:grid; grid-template-columns: 36px 1fr auto; align-items:center; gap:12px;
+  padding:12px; border-radius:14px; background:var(--card); border:1px solid rgba(255,255,255,.06);
+  transition: transform .08s ease;
 }
 
-.tab-content.active {
-  display: block;
+.item:active{transform: scale(.98)}
+.item .title{font-weight:700}
+.item .meta{font-size:12px; color:var(--muted)}
+.item .actions{display:flex; gap:4px}
+.icon-btn{background:transparent; border:0; padding:8px; cursor:pointer; border-radius:10px; color:var(--muted)}
+.icon-btn:hover{background:var(--bg-soft); color:var(--text)}
+.checkbox{appearance:none; width:22px; height:22px; border-radius:6px; background:var(--bg-soft); border:1px solid rgba(255,255,255,.1); display:grid; place-items:center}
+.checkbox:checked{background:var(--accent); border-color:transparent}
+.item.done .title{ text-decoration: line-through; color:var(--muted)}
+.fav{color:#ffcf56}
+
+.empty{opacity:.6; text-align:center; padding:24px}
+
+/* Settings */
+.settings{display:grid; gap:14px; max-width:680px}
+.row{display:flex; justify-content:space-between; align-items:center; gap:16px; background:var(--card); padding:14px; border:1px solid rgba(255,255,255,.06); border-radius:14px}
+.row small{color:var(--muted)}
+
+/* Drag hint */
+.drag-hint{font-size:12px; color:var(--muted); text-align:right; margin:8px 2px 0}
+
+@media (max-width: 520px){
+  .item{grid-template-columns: 30px 1fr auto}
+  .brand b{font-size:18px}
 }
 
-.add-task {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 1rem;
-}
-
-#taskInput {
-  flex: 1;
-  padding: 0.5rem;
-}
-
-#addTaskBtn {
-  padding: 0.5rem 1rem;
-  background: #0077cc;
-  color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-/* Task list */
-ul {
-  list-style: none;
-}
-
-li {
-  padding: 0.5rem;
-  border-bottom: 1px solid #ddd;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-li.completed {
-  text-decoration: line-through;
-  color: gray;
-}
-
-/* Star icon */
-.star {
+/* Star icon default */
+.fav-btn {
   cursor: pointer;
   font-size: 18px;
-  color: #aaa;
+  color: #aaa; /* abu-abu default */
   transition: color 0.3s ease;
 }
 
-.star:hover {
-  color: rgb(243, 130, 0);
-}
-
-.star.active {
+/* Star saat hover */
+.fav-btn:hover {
   color: gold;
 }
 
-/* Dark mode */
-body.dark {
-  background: #222;
-  color: #eee;
+/* Star saat aktif (sudah favourite) */
+.fav-btn.fav {
+  color: gold;
 }
 
-body.dark header {
-  background: #444;
+/* Styling umum untuk semua link */
+a {
+  color: var(--primary); /* pakai warna tema */
+  text-decoration: none; /* hilangkan garis bawah */
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+/* Hover efek biar interaktif */
+a:hover {
+  color: var(--accent); /* ganti warna saat hover */
+}
+
+/* Setelah dikunjungi (visited) tetap sama */
+a:visited {
+  color: var(--primary);
+}
+
+/* Opsional: kalau ada link penting bisa pakai variasi */
+a.important {
+  font-weight: 600;
+  color: var(--text);
 }
