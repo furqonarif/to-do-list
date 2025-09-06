@@ -158,3 +158,66 @@ a.important {
   font-weight: 600;
   color: var(--text);
 }
+
+/* ==========================
+   Navbar & Header - Desktop
+   ========================== */
+.navbar {
+  display: flex;
+  justify-content: space-between; /* logo di kiri, link di kanan */
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #4CAF50; /* ganti sesuai tema */
+  color: white;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: white;
+  margin-left: 20px;
+  font-weight: bold;
+}
+
+.header {
+  text-align: center;
+  padding: 50px 20px;
+  font-size: 2em;
+  color: #333;
+}
+
+/* ==========================
+   Navbar & Header - Tablet
+   ========================== */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .navbar {
+    padding: 15px 20px;
+  }
+
+  .header {
+    padding: 40px 15px;
+    font-size: 1.8em;
+  }
+}
+
+/* ==========================
+   Navbar & Header - Smartphone
+   ========================== */
+@media (max-width: 767px) {
+  /* Navbar stacked vertical */
+  .navbar {
+    flex-direction: column; /* elemen ditumpuk vertikal */
+    align-items: flex-start; /* teks mulai dari kiri */
+    gap: 10px; /* jarak antar elemen */
+    padding: 15px;
+  }
+
+  .navbar a {
+    margin-left: 0; /* hilangkan margin horizontal */
+  }
+
+  /* Header lebih kecil & rapat */
+  .header {
+    font-size: 1.5em;
+    padding: 30px 10px;
+  }
+}
